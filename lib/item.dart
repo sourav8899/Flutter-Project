@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:untitled3/carsgrid.dart';
+import 'package:untitled3/grid.dart';
 import 'package:untitled3/sell.dart';
 import 'package:untitled3/utils.dart';
 
@@ -14,9 +14,9 @@ class Cars extends StatelessWidget {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
             child: Container(
-              child: Carsgrid(),
+              child: grid(),
             ),
           )
         ],
