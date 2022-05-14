@@ -18,27 +18,20 @@ class _BottomMenuState extends State<BottomMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 56, 77, 232),
-        title: Text(
-          'Buy And Sell',
-          style: TextStyle(color: Color.fromARGB(255, 239, 239, 245)),
-        ),
+        backgroundColor: Colors.blue,
+        title: Text('Buy And Sell',style: TextStyle(color: Color.fromARGB(255, 239, 239, 245)),),
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
+        actions: [IconButton(icon: Icon(Icons.search),onPressed: () {},)],
       ),
       body: Center(child: pages[select]),
-      // ignore: prefer_const_literals_to_create_immutables
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        backgroundColor: Colors.blue,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white60,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_shopping_cart), label: "buy"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_checkout_sharp), label: "sell"),
+          BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart), label: "Buy",backgroundColor: Colors.blue),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_checkout_sharp), label: "Sell",backgroundColor: Colors.blue),
         ],
         currentIndex: select,
         onTap: (setValue) {

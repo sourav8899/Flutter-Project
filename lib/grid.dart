@@ -5,6 +5,7 @@ import 'package:iconify_flutter/icons/ps.dart';
 import 'package:untitled3/detail.dart';
 import 'package:untitled3/modles/itemdata.dart';
 import 'package:untitled3/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class grid extends StatelessWidget {
   const grid({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class grid extends StatelessWidget {
       itemBuilder: (ctx, i) => Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 238, 241, 240),
             borderRadius: BorderRadius.circular(20)),
         child: GestureDetector(
           onTap: () {
@@ -33,18 +34,97 @@ class grid extends StatelessWidget {
                       price: allCars.cars[i].price,
                     )));
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                child: Image.asset(
-                  allCars.cars[i].path,
-                  height: 100,
-                  width: 110,
-                  alignment: Alignment.topLeft,
-                  fit: BoxFit.fill,
+              Image.asset(
+                allCars.cars[i].path,
+                height: 130,
+                width: 110,
+                alignment: Alignment.topLeft,
+                fit: BoxFit.fill,
+              ),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 7, 0, 0),
+                child: Column(
+                  children: [
+                    RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: "Product:",
+                            style: GoogleFonts.poppins(
+                                textStyle: style,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87)),
+                        TextSpan(
+                            text: allCars.cars[i].product.toString(),
+                            style: GoogleFonts.poppins(
+                                textStyle: style,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87)),
+                      ]),
+                    ),
+                    RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: "Contact Name:",
+                            style: GoogleFonts.nunito(
+                                textStyle: style,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87)),
+                        TextSpan(
+                            text: allCars.cars[i].name.toString(),
+                            style: GoogleFonts.nunito(
+                                textStyle: style,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87)),
+                      ]),
+                    ),
+                    RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: "Price:",
+                            style: GoogleFonts.nunito(
+                                textStyle: style,
+                                fontSize: 18,
+                                color: Colors.black87)),
+                        TextSpan(
+                            text: allCars.cars[i].price.toString(),
+                            style: GoogleFonts.nunito(
+                                textStyle: style,
+                                fontSize: 18,
+                                color: Colors.black87)),
+                      ]),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(140, 0, 0, 0),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          final phonee = allCars.cars[i].phone;
+                          final Uri launchUri = Uri(
+                            scheme: 'tel',
+                            path: phonee,
+                          );
+                          await launchUrl(launchUri);
+                        },
+                        child: Text(
+                          'contact',
+                          style: TextStyle(color: Colors.black87),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.white54,
+                            padding: EdgeInsets.all(10)),
+                      ),
+                    )
+                  ],
                 ),
               ),
+
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.start,
               //   children: [
@@ -60,41 +140,7 @@ class grid extends StatelessWidget {
               //         )),
               //   ],
               // ),
-              Row(
-                children: [
-                  Container(
-                    child: Text('Price: Rs.',
-                        style: GoogleFonts.lato(
-                          textStyle: style,
-                          fontSize: 15,
-                        )),
-                  ),
-                  Container(
-                      child: Text((allCars.cars[i].price).toString(),
-                          style: GoogleFonts.lato(
-                            textStyle: style,
-                            fontSize: 15,
-                          ))),
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    child: Text('Product:',
-                        style: GoogleFonts.lato(
-                          textStyle: style,
-                          fontSize: 15,
-                        )),
-                  ),
-                  Container(
-                    child: Text(allCars.cars[i].product,
-                        style: GoogleFonts.lato(
-                          textStyle: style,
-                          fontSize: 15,
-                        )),
-                  )
-                ],
-              ),
+
               // Row(
               //   children: [
               //     Container(
@@ -118,10 +164,10 @@ class grid extends StatelessWidget {
         ),
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: 1,
         mainAxisSpacing: 10,
-        crossAxisSpacing: 6,
-        childAspectRatio: 1,
+        crossAxisSpacing: 10,
+        childAspectRatio: 2.33,
       ),
     );
   }

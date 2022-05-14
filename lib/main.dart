@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/bottomnavigation.dart';
-import 'package:untitled3/item.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,12 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'buy and sell',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 72, 105, 253),
-      ),
-      home: Scaffold(
-        body: BottomMenu(),
-      ),
+      theme: ThemeData(scaffoldBackgroundColor: Colors.blue[100]),
+      home: const Scaffold(body: BottomMenu()),
     );
   }
 }
